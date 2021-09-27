@@ -51,6 +51,10 @@ class SplBean implements \JsonSerializable
         return array_flip($data);
     }
 
+    /*
+     * 返回 属性 的 array
+     * classMapping不转为array
+     */
     function toArray(array $columns = null, $filter = null): array
     {
         $data = $this->jsonSerialize();
@@ -80,7 +84,8 @@ class SplBean implements \JsonSerializable
     }
 
     /*
-     * 返回转化后的array
+     * 返回 属性被keyMapping转化后的array
+     * classMapping不转为array
      */
     function toArrayWithMapping(array $columns = null, $filter = null)
     {
@@ -163,7 +168,7 @@ class SplBean implements \JsonSerializable
     /*
      * 如果需要用到keyMap  请在子类重构并返回对应的map数据
      * return ['beanKey'=>'dataKey']
-     * return ['实际的键名'=>'传人的键名']
+     * return ['构造函数传入的关联数组键名'=>'实际的属性名']
      */
     protected function setKeyMapping(): array
     {
